@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\API\BaseAPIController;
 
 class RegisterController extends BaseAPIController
@@ -11,7 +12,7 @@ class RegisterController extends BaseAPIController
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         $validated = $this->validateRequest([
             'username' => ['required', 'max:255', 'unique:users'],
