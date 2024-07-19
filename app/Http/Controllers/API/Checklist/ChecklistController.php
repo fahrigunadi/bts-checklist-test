@@ -46,9 +46,9 @@ class ChecklistController extends BaseAPIController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($checklist): JsonResponse
+    public function destroy(Request $request, string $checklist): JsonResponse
     {
-        $checklist = Checklist::find($checklist);
+        $checklist = $request->user()->checklists()->find($checklist);
 
         if (! $checklist) {
             return $this->responder(
